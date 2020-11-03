@@ -95,7 +95,7 @@
 
         <br>
 
-            
+
         <!-- <h2>World-Wide Covid Counter</h2>
         <br>
         <div class="card-columns" style="margin:10px;">
@@ -240,29 +240,29 @@
 
 
         // Main -- the code below will be executed when Page loads
-        
 
-            // Get a New Deck of Cards
-            var deck = getDeck();
 
-            // Get URL Parameters if they exist
-            const queryString = window.location.search;
+        // Get a New Deck of Cards
+        var deck = getDeck();
 
-            if (queryString) {
+        // Get URL Parameters if they exist
+        const queryString = window.location.search;
 
-                // If there are URL Parameters, dissect the parameters and get the specified card image
-                getCardFromURLParameters(queryString);
+        if (queryString) {
 
-            } else {
+            // If there are URL Parameters, dissect the parameters and get the specified card image
+            getCardFromURLParameters(queryString);
 
-                // Otherwise, we get a deck from an API and draw a card
-                console.log("No URL Parameters detected");
+        } else {
 
-                // Draw a Card from the Deck
-                drawCard(deck.deck_id);
-            }
+            // Otherwise, we get a deck from an API and draw a card
+            console.log("No URL Parameters detected");
 
-        
+            // Draw a Card from the Deck
+            drawCard(deck.deck_id);
+        }
+
+
 
     </script>
 
