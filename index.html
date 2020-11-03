@@ -32,7 +32,7 @@
         }
 
         h2 {
-            color:white;
+            color: white;
         }
 
         .cardTable * {
@@ -95,29 +95,29 @@
 
         <br>
 
-        <!--     
-        <h2>World-Wide Covid Counter</h2>
+            
+        <!-- <h2>World-Wide Covid Counter</h2>
         <br>
-        <div class="card-columns">
+        <div class="card-columns" style="margin:10px;">
             <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="">
+                <img class="card-img-top" src="https://ewscripps.brightspotcdn.com/63/5c/7db696744a1680623e5a66cdf44c/coronavirus-covid-19-background.jpg" alt="">
                 <div class="card-body">
                     <h4 class="card-title">New Cases Today</h4>
-                    <p class="card-text">Text</p>
+                    <p class="card-text" id="newCases">-</p>
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="">
+                <img class="card-img-top" src="https://www.fda.gov/files/surgical-mask.jpg" alt="">
                 <div class="card-body">
                     <h4 class="card-title">Total Cases</h4>
-                    <p class="card-text">Text</p>
+                    <p class="card-text" id="totalCases">-</p>
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="holder.js/100x180/" alt="">
+                <img class="card-img-top" src="https://media.khou.com/assets/KSDK/images/f3a3444d-c8f9-498f-b791-a3d972e15523/f3a3444d-c8f9-498f-b791-a3d972e15523_750x422.jpg"" alt="">
                 <div class="card-body">
                     <h4 class="card-title">Total Recovered</h4>
-                    <p class="card-text">Text</p>
+                    <p class="card-text" id="totalRecovered">-</p>
                 </div>
             </div>
         </div> -->
@@ -133,7 +133,7 @@
             alert("Three seconds have passed!");
         }
 
-        // Make an HTTP GET Request to an API
+        // Make an HTTP GET Request to an API and return the raw JSON
         function makeAPIRequest(requestURL) {
 
             // Create variable to send our HTTP Request and hold the respond 
@@ -240,26 +240,29 @@
 
 
         // Main -- the code below will be executed when Page loads
+        
 
-        // Get a New Deck of Cards
-        var deck = getDeck();
+            // Get a New Deck of Cards
+            var deck = getDeck();
 
-        // Get URL Parameters if they exist
-        const queryString = window.location.search;
+            // Get URL Parameters if they exist
+            const queryString = window.location.search;
 
-        if (queryString) {
+            if (queryString) {
 
-            // If there are URL Parameters, dissect the parameters and get the specified card image
-            getCardFromURLParameters(queryString);
+                // If there are URL Parameters, dissect the parameters and get the specified card image
+                getCardFromURLParameters(queryString);
 
-        } else {
+            } else {
 
-            // Otherwise, we get a deck from an API and draw a card
-            console.log("No URL Parameters detected");
+                // Otherwise, we get a deck from an API and draw a card
+                console.log("No URL Parameters detected");
 
-            // Draw a Card from the Deck
-            drawCard(deck.deck_id);
-        }
+                // Draw a Card from the Deck
+                drawCard(deck.deck_id);
+            }
+
+        
 
     </script>
 
