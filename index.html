@@ -18,31 +18,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Title of Our Website -->
-    <title>API Cards</title>
+    <title>DrawACard from API</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS from CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- Custom CSS Styles -->
+    <link rel="stylesheet" href="styles.css">
 
-    <!-- Inline CSS Styling for a Gradient Background and White Text Color -->
-    <style>
-        body {
-            background-image: radial-gradient(circle at center center, transparent, rgb(0, 0, 0)), linear-gradient(300deg, rgba(198, 198, 198, 0.05) 0%, rgba(198, 198, 198, 0.05) 50%, rgba(11, 11, 11, 0.05) 50%, rgba(11, 11, 11, 0.05) 100%), linear-gradient(64deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 50%, rgba(132, 132, 132, 0.05) 50%, rgba(132, 132, 132, 0.05) 100%), linear-gradient(17deg, rgba(57, 57, 57, 0.05) 0%, rgba(57, 57, 57, 0.05) 50%, rgba(128, 128, 128, 0.05) 50%, rgba(128, 128, 128, 0.05) 100%), linear-gradient(332deg, rgba(97, 97, 97, 0.05) 0%, rgba(97, 97, 97, 0.05) 50%, rgba(85, 85, 85, 0.05) 50%, rgba(85, 85, 85, 0.05) 100%), linear-gradient(148deg, rgba(237, 237, 237, 0.05) 0%, rgba(237, 237, 237, 0.05) 50%, rgba(211, 211, 211, 0.05) 50%, rgba(211, 211, 211, 0.05) 100%), linear-gradient(142deg, rgba(168, 168, 168, 0.05) 0%, rgba(168, 168, 168, 0.05) 50%, rgba(32, 32, 32, 0.05) 50%, rgba(32, 32, 32, 0.05) 100%), linear-gradient(15deg, rgba(225, 225, 225, 0.05) 0%, rgba(225, 225, 225, 0.05) 50%, rgba(228, 228, 228, 0.05) 50%, rgba(228, 228, 228, 0.05) 100%), linear-gradient(5deg, rgba(104, 104, 104, 0.05) 0%, rgba(104, 104, 104, 0.05) 50%, rgba(43, 43, 43, 0.05) 50%, rgba(43, 43, 43, 0.05) 100%), radial-gradient(circle at center center, hsl(290, 5%, 8%), hsl(290, 5%, 8%));
-        }
 
-        h2 {
-            color: white;
-        }
-
-        .cardTable * {
-            color: white;
-        }
-
-        p {
-            display: inline;
-        }
-    </style>
 </head>
 
 <body>
@@ -51,10 +36,9 @@
         <div class="cardTable">
             <h1>Draw A Card From an API</h1>
 
-            <br>
 
             <!-- The Main Card DIV contains an Image for the Face of the Card and Two Paragraph Elements for the Value and Suit  -->
-            <div id="card">
+            <div class="container" id="card">
                 <img id="face" src="">
 
                 <br>
@@ -63,7 +47,6 @@
                 <p id="suit"></p>
             </div>
 
-            <br>
 
             <!-- Some Information About The Deck -->
             <div id="deckInfo">
@@ -77,194 +60,21 @@
                 <p id="cardsRemaining"></p>
             </div>
 
-            <br>
 
             <!-- A Button to Execute the JavaScript drawCard() Function -->
             <button class="btn btn-primary" onclick="drawCard( deck.deck_id )">Draw A Card</button>
+            <button class="btn btn-secondary" onclick="getDeck()">Shuffle Deck</button>
 
-            <br><br>
 
-            <!-- 
-            A Button to Execute the JavaScript alertAfterTimer Function after a delay of 3000 microseconds
-            Note: Don't use parenthesis here or alertAfterTimer() will be called immediately. Parenthesis execute the function.
-         -->
-            <button class="btn btn-primary" onclick="setTimeout(alertAfterTimer, 3000)">3 Second Timer</button>
-
-            <br><br>
         </div>
 
         <br>
 
 
-        <!-- <h2>World-Wide Covid Counter</h2>
-        <br>
-        <div class="card-columns" style="margin:10px;">
-            <div class="card">
-                <img class="card-img-top" src="https://ewscripps.brightspotcdn.com/63/5c/7db696744a1680623e5a66cdf44c/coronavirus-covid-19-background.jpg" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">New Cases Today</h4>
-                    <p class="card-text" id="newCases">-</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.fda.gov/files/surgical-mask.jpg" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Total Cases</h4>
-                    <p class="card-text" id="totalCases">-</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://media.khou.com/assets/KSDK/images/f3a3444d-c8f9-498f-b791-a3d972e15523/f3a3444d-c8f9-498f-b791-a3d972e15523_750x422.jpg"" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Total Recovered</h4>
-                    <p class="card-text" id="totalRecovered">-</p>
-                </div>
-            </div>
-        </div> -->
-
-
     </center>
 
+    <script src="drawACard.js"></script>
 
-    <script>
-
-        // Display Alert Message
-        function alertAfterTimer() {
-            alert("Three seconds have passed!");
-        }
-
-        // Make an HTTP GET Request to an API and return the raw JSON
-        function makeAPIRequest(requestURL) {
-
-            // Create variable to send our HTTP Request and hold the respond 
-            var xhr = new XMLHttpRequest();
-            var response;
-
-            // Send the HTTP GET Request and wait for a response
-            // Best practice to use Asynchronous XHR Requests, but this is synchronus for simplicity
-            xhr.open("GET", requestURL, false);
-            xhr.onload = function (e) {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-
-                        // If the request completes with a success 200 status code, assign the response
-                        // console.log(xhr.responseText);
-                        response = xhr.responseText
-
-                    } else {
-
-                        // If the request completes with an error status code, log the error
-                        console.error(xhr.statusText);
-
-                    }
-                }
-            };
-            xhr.onerror = function (e) {
-                console.error(xhr.statusText);
-            };
-            xhr.send(null);
-
-            // Return the response
-            return response;
-        }
-
-        // Gets URL Parameters for a Specific Card
-        function getCardFromURLParameters(queryString) {
-
-            console.log("All URL Parameters: " + queryString);
-
-            // Parse URL into individual parameters
-            // Example: http://mysite.com?card=5C
-            const urlParams = new URLSearchParams(queryString);
-
-
-            //If a card is defined in the URL parameters create a string
-            var cardDefined = urlParams.get('card')
-            console.log("cardDefined: " + cardDefined);
-
-            // If a 'card' parameter is in the URL, the cardDefined variable now contains a card object
-            console.log("card defined in parameters");
-
-            // Update HTML to show Face of Specified Card
-            document.getElementById("face").src = "https://deckofcardsapi.com/static/img/" + cardDefined + ".png";
-            document.getElementById("suit").innerHTML = "Card Defined In URL Parameter";
-
-        }
-
-        // Get a Deck of Cards from an API
-        function getDeck() {
-            console.log("getting deck");
-
-            // Assign the response of an API Request into a JSON String
-            var json = makeAPIRequest('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
-            console.log("JSON: " + json);
-
-            // Parse the JSON into a JavaScript Object so that we can use it
-            var deck = JSON.parse(json);
-            console.log(deck);
-
-            // Update HTML with information about the New Deck
-            document.getElementById("deckID").innerHTML = deck.deck_id;
-            document.getElementById("cardsRemaining").innerHTML = deck.remaining;
-
-            // Return the Deck
-            return deck;
-        }
-
-        // Get a Card from a Specific Deck of Cards
-        function drawCard(deckID) {
-
-            console.log("drawing card");
-
-            // Store API Response for Drawing a Card into a JSON String
-            var json = makeAPIRequest('https://deckofcardsapi.com/api/deck/' + deckID + '/draw/?count=1');
-            console.log("JSON: " + json);
-
-            // Parse the JSON into a JavaScript Object 
-            var deck = JSON.parse(json);
-
-            // Get first element in Card Array
-            var card = deck.cards[0];
-            console.log(card);
-
-            // Update HTML to display the new card
-            document.getElementById("face").src = card.image;
-            document.getElementById("suit").innerHTML = card.suit;
-            document.getElementById("value").innerHTML = card.value;
-
-            // Update HTML to display correct number of cards left in deck
-            document.getElementById("cardsRemaining").innerHTML = deck.remaining;
-
-        }
-
-
-
-        // Main -- the code below will be executed when Page loads
-
-
-        // Get a New Deck of Cards
-        var deck = getDeck();
-
-        // Get URL Parameters if they exist
-        const queryString = window.location.search;
-
-        if (queryString) {
-
-            // If there are URL Parameters, dissect the parameters and get the specified card image
-            getCardFromURLParameters(queryString);
-
-        } else {
-
-            // Otherwise, we get a deck from an API and draw a card
-            console.log("No URL Parameters detected");
-
-            // Draw a Card from the Deck
-            drawCard(deck.deck_id);
-        }
-
-
-
-    </script>
 
     <!-- Optional Bootstrap JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
